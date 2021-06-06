@@ -17,6 +17,11 @@ public:
 
 private:
     Ui::frmlightbutton *ui;
+    int type; // ?
+
+private slots:
+    void initForm(); //
+    void updateValue(); //
 };
 
 #endif // FRMLIGHTBUTTON_H
