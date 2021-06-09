@@ -11,9 +11,11 @@ public:
 
 private:
     QColor bgColor; // 背景颜色
+    QColor borderOutColorStart; //外边框渐变开始颜色
+    QColor borderOutColorEnd;   //外边框渐变结束颜色
 protected:
        void paintEvent(QPaintEvent *);
-        void drawBorderOut(QPainter *painter);
+        void drawBorderOut(QPainter *painter); // 绘制外边框
         void drawBorderIn(QPainter *painter);
         void drawBg(QPainter *painter); // 绘制内部颜色
         void drawOverlay(QPainter *painter);

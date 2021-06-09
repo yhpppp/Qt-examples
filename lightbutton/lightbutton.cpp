@@ -3,7 +3,8 @@
 
 LightButton::LightButton(QWidget *parent) : QWidget(parent)
 {
-
+    borderOutColorStart = QColor(255,255,255);
+    borderOutColorEnd = QColor(166,166,166);
 }
 
 void LightButton::paintEvent(QPaintEvent *)
@@ -21,7 +22,7 @@ void LightButton::paintEvent(QPaintEvent *)
     painter.scale(side / 200.0, side / 200.0);
 
 
-    //    drawBorderOut(&painter);
+        drawBorderOut(&painter);
 
     //    drawBorderIn(&painter);
 
@@ -34,7 +35,15 @@ void LightButton::paintEvent(QPaintEvent *)
 
 void LightButton::drawBorderOut(QPainter *painter)
 {
-
+    int radius = 99;
+    painter->save();
+    painter->setPen(Qt::NoPen);
+    QLinearGradient borderGradient(0,-radius,0,radius);
+    borderGradient.setColorAt(0,borderOutColorStart);
+    borderGradient.setColorAt(1,borderOutColorEnd);
+    painter->setBrush(borderGradient);
+    painter->drawEllipse(-radius,-radius,radius * 2, radius * 2);
+    painter->restore();
 }
 
 void LightButton::drawBorderIn(QPainter *painter)
@@ -48,6 +57,7 @@ void LightButton::drawBg(QPainter *painter)
     painter->save();
     painter->setPen(Qt::NoPen);
     painter->setBrush(bgColor);
+    // 画圆
     painter->drawEllipse(-radius,-radius,radius*2,radius*2);
     painter->restore();
 }
